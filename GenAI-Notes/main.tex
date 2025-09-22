@@ -1,0 +1,291 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lmodern} % scalable Latin Modern fonts
+\renewcommand{\arraystretch}{2}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+% sudo dnf install texlive-collection-latexextra
+% sudo dnf install texlive-scheme-basic texlive-metafont
+
+
+% Define custom colors
+\definecolor{mypage}{HTML}{212121}  % dark gray page
+\definecolor{mytext}{HTML}{FFFFFF}  % white text
+
+\pagecolor{mypage} % Set page background color
+\color{mytext}     % Set default text color
+
+% latexmk -pdf -pvc main.tex
+\setlength{\parindent}{0pt}
+\begin{document}
+
+\section*{Comparing LLMs -- The Basics (1)}
+
+\begin{tabularx}{\textwidth}{|>{\hsize=0.3\hsize}L|>{\hsize=0.7\hsize}L|}
+\hline
+\textbf{Feature} & \textbf{Description / Notes} \\
+\hline
+Open-source or Closed & Whether the model’s weights, architecture, and training code are publicly available. Examples: GPT-4 (closed), LLaMA 2 (open). \\
+\hline
+Release Date \& Knowledge Cut-off & The date the model was released and the latest point in time the training data covers. Important for up-to-date responses. \\
+\hline
+Parameters & Number of trainable weights in the model (e.g., billions of parameters). Determines model capacity. \\
+\hline
+Training Tokens & Amount of text data used during training, usually in billions of tokens. More tokens generally improve performance. \\
+\hline
+Context Length & Maximum input length (in tokens) the model can handle in a single prompt. Longer context allows better understanding of large inputs. \\
+\hline
+\end{tabularx}
+
+\vspace{1em}
+
+\section*{Comparing LLMs -- The Basics (2)}
+
+\begin{tabularx}{\textwidth}{|>{\hsize=0.3\hsize}L|>{\hsize=0.7\hsize}L|}
+\hline
+\textbf{Feature} & \textbf{Description / Notes} \\
+\hline
+Inference Cost & Computational resources required to generate output (GPU, CPU usage). \\
+\hline
+API Charge / Subscription / Runtime Compute & How much it costs to access the model through a cloud service. \\
+\hline
+Training Cost & Cost to pretrain the model, including compute, electricity, and infrastructure. \\
+\hline
+Build Cost & Cost to fine-tune, deploy, or customize the model. \\
+\hline
+Time to Market & How quickly you can deploy and use the model in production. \\
+\hline
+Rate Limits & Restrictions on API usage, e.g., calls per minute or per day. \\
+\hline
+Speed \& Latency & How fast the model responds, depends on model size, hardware, and context length. \\
+\hline
+License & Terms for use, redistribution, and commercial deployment. Some open-source licenses restrict commercial use. \\
+\hline
+\end{tabularx}
+
+\vspace{1em}
+
+\section*{Chinchilla Scaling Law}
+
+\textbf{Key Principle:} Number of model parameters should scale roughly proportional to the number of training tokens.
+
+\textbf{Implications:}
+\begin{itemize}
+    \item Increasing model size without enough data leads to plateaued or degraded performance.
+    \item Having lots of training data with a small model underperforms; parameters must scale up.
+\end{itemize}
+
+\textbf{Rule of Thumb:} Let $N$ = model parameters, $D$ = training tokens. For optimal training:
+\[
+N \propto D
+\]
+
+\textbf{Example:}
+\begin{itemize}
+    \item Doubling model parameters $\rightarrow$ need roughly double the training tokens.
+    \item Insufficient tokens $\rightarrow$ diminishing returns.
+\end{itemize}
+
+\textbf{Additional Notes:}
+\begin{itemize}
+    \item Smaller, well-trained models can outperform larger, undertrained ones.
+    \item Helps determine compute-efficient configurations for new LLMs.
+\end{itemize}
+
+\vspace{1em}
+
+\section*{Common LLM Benchmarks}
+
+\begin{tabularx}{\textwidth}{|>{\hsize=0.2\hsize}X|>{\hsize=0.3\hsize}X|>{\hsize=0.5\hsize}X|}
+\hline
+\textbf{Benchmark} & \textbf{Focus / Task} & \textbf{Description} \\
+\hline
+MMLU & Knowledge across multiple subjects & Assess general knowledge and reasoning; used to compare models like GPT-3, Chinchilla, and Gopher. \\
+\hline
+BIG-bench & Broad suite of diverse reasoning tasks & Tests reasoning, factual knowledge, ethics, math, code; hundreds of tasks evaluating beyond narrow QA. \\
+\hline
+HellaSwag & Commonsense reasoning & Multiple-choice questions for everyday situations; measures ability to predict plausible outcomes. \\
+\hline
+TruthfulQA & Factual accuracy / truthfulness & QA tasks designed to detect hallucinations; evaluates honesty of LLM answers. \\
+\hline
+WinoGrande / Winograd Schema Challenge & Pronoun resolution / coreference & Tests commonsense reasoning and context understanding; resolves ambiguous references. \\
+\hline
+ARC & Science and reasoning & Multiple-choice science questions; evaluates problem-solving and reasoning in STEM. \\
+\hline
+HumanEval & Coding and code generation & Tests Python programming ability; measures functional correctness of generated code. \\
+\hline
+\end{tabularx}
+
+\vspace{1em}
+
+\section*{Specific Benchmarks}
+
+\begin{tabularx}{\textwidth}{|>{\hsize=0.2\hsize}X|>{\hsize=0.3\hsize}X|>{\hsize=0.5\hsize}X|}
+\hline
+\textbf{Benchmark} & \textbf{What’s Being Evaluated} & \textbf{Description} \\
+\hline
+ELO & Model ranking / performance consistency & Evaluates models via pairwise comparisons; creates a relative ranking of LLMs across multiple tasks. \\
+\hline
+HumanEval & Code generation / functional correctness & Tests an LLM’s ability to write Python functions that pass unit tests; measures coding logic and correctness. \\
+\hline
+Multipl-E & Multimodal reasoning & Evaluates LLMs on tasks combining text and images (or multiple modalities); measures reasoning and comprehension across modalities. \\
+\hline
+\end{tabularx}
+
+\vspace{1em}
+
+\section*{Limitations of Benchmarks}
+
+\begin{tabularx}{\textwidth}{|>{\hsize=0.6\hsize}L|>{\hsize=1.4\hsize}L|}
+\hline
+\textbf{Limitation} & \textbf{Explanation} \\
+\hline
+Narrow focus & Many benchmarks test only specific skills (e.g., coding, factual QA, commonsense), not overall intelligence or adaptability. \\
+\hline
+Static datasets & Benchmarks are fixed in time, so models trained after the cut-off may have an unfair advantage or miss newer knowledge. \\
+\hline
+Lack of real-world context & Benchmarks often use idealized tasks, not messy, ambiguous, or multi-step real-world scenarios. \\
+\hline
+Gaming / overfitting & Models can be fine-tuned or prompted to specifically excel on benchmark tasks without improving general capabilities. \\
+\hline
+Limited multimodality & Most benchmarks focus on text-only tasks; few measure image, audio, or multimodal reasoning. \\
+\hline
+Subjectivity & Some benchmarks (e.g., ethics, creativity, hallucination detection) are hard to score objectively. \\
+\hline
+Compute bias & Larger models may perform better mainly due to size, not reasoning ability, skewing benchmark results. \\
+\hline
+Hard to measure nuanced reasoning & Benchmarks mostly measure surface correctness; they often cannot capture multi-step reasoning, context-dependent judgment, creativity, or reasoning accuracy vs. fluency. \\
+\hline
+\end{tabularx}
+
+\section*{Advanced Benchmarks for Large Language Models}
+
+\begin{tabularx}{\textwidth}{|>{\hsize=0.2\hsize}X|>{\hsize=0.3\hsize}X|>{\hsize=0.5\hsize}X|}
+\hline
+\textbf{Benchmark} & \textbf{Focus / Task} & \textbf{Description / Meaning} \\
+\hline
+GPQA & Graduate-level question answering & Evaluates performance on graduate-level tests with 448 expert questions. Non-PhD humans score only 34\% even with web access. Measures LLM ability to handle highly specialized knowledge. \\
+\hline
+BBHard & Future capabilities & Includes 204 tasks previously thought beyond LLM capabilities. Designed to test reasoning, logic, and generalization at a next-level difficulty. \\
+\hline
+Math Lv 5 & High-school math competition problems & Measures model’s ability to solve advanced math problems requiring multi-step reasoning and problem-solving skills. Useful for chain-of-thought evaluation. \\
+\hline
+IFEval & Instruction following & Tests the model’s ability to follow complex instructions, e.g., “write more than 400 words” and “mention AI at least 3 times.” Evaluates comprehension and compliance with nuanced prompts. \\
+\hline
+MuSR & Multistep soft reasoning & Assesses logical deduction and multi-step reasoning. Example: analyzing a 1,000-word story and identifying “who has means, motive, and opportunity.” Tests reasoning beyond surface facts. \\
+\hline
+MMLU-PRO & Harder MMLU version & Advanced, cleaned-up version of MMLU with questions having 10 possible answers instead of 4. Evaluates deeper knowledge, multi-choice reasoning, and generalization. \\
+\hline
+\end{tabularx}
+
+\vspace{1em}
+\textbf{Notes:}
+\begin{itemize}
+    \item These benchmarks are considered “next-level” because they test advanced reasoning, multi-step logic, and high-level knowledge.  
+    \item Useful for evaluating models that go beyond standard QA, commonsense reasoning, or basic coding tasks.  
+    \item Many of these benchmarks also measure compliance with complex instructions and reasoning under uncertainty. 
+\end{itemize}
+
+
+\begin{tabularx}{\textwidth}{|>{\hsize=0.15\hsize}X|>{\hsize=0.85\hsize}X|}
+\hline
+\textbf{Benchmark} & \textbf{Purpose / Examples} \\
+\hline
+GPQA & Specialized knowledge, expert-level Q\&A, academic reasoning, physics, chemistry, biology expertise.  \newline
+\textbf{Examples:} Explain the biochemical steps of glycolysis; Describe Newton’s laws with practical applications; Explain photosynthesis in detail. \\
+\hline
+BBHard & Advanced reasoning, logic, generalization in challenging scenarios.  \newline
+\textbf{Examples:} Predict how a hypothetical AI agent could optimize a supply chain in a novel scenario; Design a strategy to minimize energy consumption in an unfamiliar industrial process; Solve a logic puzzle with multiple constraints. \\
+\hline
+Math Lv 5 & Complex problem solving, chain-of-thought evaluation, mathematical reasoning.  \newline
+\textbf{Examples:} Solve: If \(x^2 - 5x + 6 = 0\), find all integer solutions; Evaluate combinatorial problems like “How many ways can 5 books be arranged on a shelf?”; Solve calculus problems requiring multiple steps. \\
+\hline
+IFEval & Precise instruction compliance, comprehension, content generation with constraints.  \newline
+\textbf{Examples:} Write a 450-word essay on renewable energy mentioning AI at least 3 times; Summarize a research paper in 300 words including key terms; Rewrite a paragraph to follow a formal tone while keeping original meaning. \\
+\hline
+MuSR & Multi-step reasoning, deduction, understanding narratives beyond surface facts, solving prime puzzles and reasoning tasks.  \newline
+\textbf{Examples:} Analyze a 1,000-word mystery story to determine “who has means, motive, and opportunity”; Identify the next prime number in a complex sequence; Solve multi-step logic puzzles. \\
+\hline
+MMLU-PRO & Deep knowledge, advanced multi-choice understanding, broader knowledge evaluation, general language understanding.  \newline
+\textbf{Examples:} Choose the best explanation for why the sky is blue from 10 options; Identify the correct historical fact among 10 alternatives; Evaluate grammar and style in multiple-choice questions. \\
+\hline
+\end{tabularx}
+
+\vspace{0.5em}
+\textbf{Tips to distinguish benchmarks:}
+\begin{itemize}
+    \item \textbf{GPQA} -- focus on subject expertise.
+    \item \textbf{BBHard} -- focus on novel reasoning and logic.
+    \item \textbf{IFEval} -- focus on following instructions accurately.
+    \item \textbf{MuSR} -- focus on multi-step deduction and problem solving (e.g., prime puzzles, mysteries).
+    \item \textbf{MMLU-PRO} -- focus on broad knowledge and multiple-choice reasoning.
+\end{itemize}
+
+
+\section*{Leaderboard Image}
+
+% Include the image
+\begin{center}
+\includegraphics[width=0.8\textwidth]{leaderboards.png}
+\end{center}
+
+\begin{tabularx}{\textwidth}{|>{\hsize=0.6\hsize}L|>{\hsize=1.4\hsize}L|}
+\hline
+\textbf{Leaderboard} & \textbf{Purpose / Use} \\
+\hline
+HuggingFace Open LLM & Tracks performance of open-source LLMs (new and old versions). Useful for selecting models for research or deployment with full weight access. \\
+\hline
+HuggingFace BigCode & Focused on code generation LLMs. Helps compare models for coding tasks, programming language coverage, and code quality. \\
+\hline
+HuggingFace LLM Perf & Benchmarking general LLM performance across various NLP tasks. Useful for measuring speed, accuracy, RAM memory usage and general reasoning ability. \\
+\hline
+HuggingFace Others & Specialized leaderboards, e.g., medical, domain-specific, or language-specific models. Guides selection for niche applications. \\
+\hline
+Vellum & Includes context window, API cost, and usage constraints. Useful for developers to choose models based on practical deployment factors. \\
+\hline
+SEAL & Focused on expert skills and high-level reasoning. Useful for selecting LLMs that excel in professional or complex knowledge domains. \\
+\hline
+\end{tabularx}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
