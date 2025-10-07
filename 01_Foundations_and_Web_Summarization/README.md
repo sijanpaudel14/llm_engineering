@@ -85,8 +85,6 @@ For free local development without API costs:
 
 ```
 
-```
-
 01_Foundations_and_Web_Summarization/
 ├── README.md # This file
 ├── 01_WebSummarizer_FirstLLM.ipynb # Main web summarizer project
@@ -100,8 +98,6 @@ For free local development without API costs:
 ├── solutions/ # Reference implementations
 ├── community-contributions/ # Student contributions
 └── diagnostics.py # Diagnostic utilities
-
-```
 
 ```
 
