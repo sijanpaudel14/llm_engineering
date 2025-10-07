@@ -49,14 +49,14 @@ I am a passionate **Generative AI Engineer** with hands-on expertise in developi
 
 | Week | Project Title                        | Key Achievement                                                                        | Technologies Used                | Link               |
 | ---- | ------------------------------------ | -------------------------------------------------------------------------------------- | -------------------------------- | ------------------ |
-| 1    | **AI Web Summarizer**                | Built first LLM application using OpenAI API for intelligent web content summarization | OpenAI API, Jupyter, Python      | [Week 1](./week1/) |
-| 2    | **Multi-Provider LLM Comparison**    | Integrated 3 major LLM providers (OpenAI, Anthropic, Google) with unified interface    | Multiple APIs, Model Comparison  | [Week 2](./week2/) |
-| 3    | **HuggingFace Pipeline Integration** | Implemented tokenizers, models, and pipelines with GPU acceleration on Google Colab    | HuggingFace, Transformers, Colab | [Week 3](./week3/) |
-| 4    | **Performance Optimization**         | Enhanced LLM applications with C++ optimizations and advanced programming techniques   | C++, Performance Tuning          | [Week 4](./week4/) |
-| 5    | **RAG Knowledge Assistant**          | Built retrieval-augmented generation system for insurance company knowledge base       | RAG, Vector DB, Gradio           | [Week 5](./week5/) |
-| 6    | **Custom Dataset Processing**        | Developed fine-tuning pipeline with custom datasets and model evaluation metrics       | Data Processing, Fine-tuning     | [Week 6](./week6/) |
-| 7    | **QLoRA Model Fine-tuning**          | Fine-tuned open-source models for product price prediction using QLoRA techniques      | QLoRA, Model Training, Colab     | [Week 7](./week7/) |
-| 8    | **Production Agent System**          | Deployed autonomous multi-agent AI solution using serverless architecture              | Modal, Agent Systems, Production | [Week 8](./week8/) |
+| 1    | **AI Web Summarizer**                | Built first LLM application using OpenAI API for intelligent web content summarization | OpenAI API, Jupyter, Python      | [Week 1](./01_Foundations_and_Web_Summarization/) |
+| 2    | **Multi-Provider LLM Comparison**    | Integrated 3 major LLM providers (OpenAI, Anthropic, Google) with unified interface    | Multiple APIs, Model Comparison  | [Week 2](./02_API_Integration_and_Provider_Comparisons/) |
+| 3    | **HuggingFace Pipeline Integration** | Implemented tokenizers, models, and pipelines with GPU acceleration on Google Colab    | HuggingFace, Transformers, Colab | [Week 3](./03_HuggingFace_and_Model_Fundamentals/) |
+| 4    | **Performance Optimization**         | Enhanced LLM applications with C++ optimizations and advanced programming techniques   | C++, Performance Tuning          | [Week 4](./04_Systems_and_Performance_Programming/) |
+| 5    | **RAG Knowledge Assistant**          | Built retrieval-augmented generation system for insurance company knowledge base       | RAG, Vector DB, Gradio           | [Week 5](./05_RAG_Systems_and_Vector_Databases/) |
+| 6    | **Custom Dataset Processing**        | Developed fine-tuning pipeline with custom datasets and model evaluation metrics       | Data Processing, Fine-tuning     | [Week 6](./06_Dataset_Preparation_and_Evaluation/) |
+| 7    | **QLoRA Model Fine-tuning**          | Fine-tuned open-source models for product price prediction using QLoRA techniques      | QLoRA, Model Training, Colab     | [Week 7](./07_QLoRA_and_Model_FineTuning/) |
+| 8    | **Production Agent System**          | Deployed autonomous multi-agent AI solution using serverless architecture              | Modal, Agent Systems, Production | [Week 8](./08_Agent_Systems_and_Enterprise_Deployment/) |
 
 ## Navigation Guide
 
@@ -85,9 +85,9 @@ I am a passionate **Generative AI Engineer** with hands-on expertise in developi
 ## Connect With Me
 
 🔗 **Portfolio**: [GitHub Repository](https://github.com/sijanpaudel14/llm_engineering)  
-💼 **LinkedIn**: [Connect with me professionally](https://linkedin.com/in/sijanpaudel)  
-📧 **Email**: sijanpaudel14@example.com  
-🌐 **Website**: [My Portfolio](https://sijanpaudel.dev)
+💼 **LinkedIn**: [Connect with me professionally](https://linkedin.com/in/sijanpaudel14)  
+📧 **Email**: sijanpaudel44@gmail.com  
+🌐 **Website**: [My Portfolio](https://sijanpaudel.com.np)
 
 ---
 
