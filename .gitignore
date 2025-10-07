@@ -5,6 +5,8 @@ community-contributions/
 __pycache__/
 *.py[cod]
 *$py.class
+CAREER_LAUNCH_PLAN.md
+RESUME_READY_SECTIONS.md
 
 # C extensions
 *.so
