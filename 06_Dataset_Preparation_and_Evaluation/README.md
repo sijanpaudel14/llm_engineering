@@ -90,25 +90,27 @@ Developed comprehensive data processing and model training infrastructure, inclu
 ## Project Structure
 
 ```
-week6/
-├── README.md                    # This file
-├── day1.ipynb                   # Dataset creation pipeline
-├── day2.ipynb                   # Data preprocessing
-├── day3.ipynb                   # Quality assurance
-├── day4.ipynb                   # Model evaluation
-├── day4-results.ipynb           # Evaluation results
-├── day5.ipynb                   # Advanced evaluation
-├── day5-results.ipynb           # Final results analysis
-├── lite.ipynb                   # Lightweight processing version
-├── fine_tune_train.jsonl        # Training dataset (JSONL format)
-├── fine_tune_validation.jsonl   # Validation dataset
-├── human_input.csv              # Human-labeled input data
-├── human_output.csv             # Human-labeled output data
-├── test.pkl                     # Test dataset (serialized)
-├── train.pkl                    # Training dataset (serialized)
-├── items.py                     # Custom data item processing
-├── loaders.py                   # Data loading utilities
-└── testing.py                   # Automated testing framework
+06_Dataset_Preparation_and_Evaluation/
+├── README.md                           # This file
+├── 01_Custom_Dataset_Creation.ipynb    # Dataset creation pipeline
+├── 02_Data_Processing_Pipeline.ipynb   # Data preprocessing
+├── 03_Quality_Assurance_Framework.ipynb # Quality assurance
+├── 04_Model_Evaluation_Metrics.ipynb   # Model evaluation
+├── 05_Evaluation_Results_Analysis.ipynb # Evaluation results
+├── 06_Advanced_ML_Evaluation.ipynb     # Advanced evaluation
+├── 07_Final_Performance_Report.ipynb   # Final results analysis
+├── 08_Lightweight_Processing_Version.ipynb # Lightweight processing version
+├── fine_tune_train.jsonl               # Training dataset (JSONL format)
+├── fine_tune_validation.jsonl          # Validation dataset
+├── human_input.csv                     # Human-labeled input data
+├── human_output.csv                    # Human-labeled output data
+├── test.pkl                            # Test dataset (serialized)
+├── train.pkl                           # Training dataset (serialized)
+├── items.py                            # Custom data item processing
+├── loaders.py                          # Data loading utilities
+├── testing.py                          # Automated testing framework
+├── community-contributions/            # Student contributions
+└── __pycache__/                        # Python cache directory
 ```
 
 ## Skills Demonstrated

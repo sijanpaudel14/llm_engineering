@@ -97,34 +97,36 @@ python pricer_service.py  # Production pricing service
 ## Project Structure
 
 ```
-week8/
-├── README.md                    # This file
-├── day1.ipynb                   # Modal introduction and setup
-├── day2.0.ipynb                 # Basic agent implementation
-├── day2.0-Copy1.ipynb          # Agent variations
-├── day2.1.ipynb                 # Advanced agent features
-├── day2.2.ipynb                 # Multi-agent coordination
-├── day2.3.ipynb                 # Production optimizations
-├── day2.4.ipynb                 # Monitoring and analytics
-├── day3.ipynb                   # Agent system integration
-├── day4.ipynb                   # Advanced deployment
-├── day5.ipynb                   # Production monitoring
-├── hello.py                     # Basic Modal examples
-├── deal_agent_framework.py      # Agent orchestration framework
-├── price_is_right.py           # Game show pricing agent
-├── price_is_right_final.py     # Production pricing system
-├── pricer_ephemeral.py         # Ephemeral pricing service
-├── pricer_service.py           # Main pricing service
-├── pricer_service2.py          # Enhanced pricing service
-├── keep_warm.py                # Service warm-up utilities
-├── log_utils.py                # Logging and monitoring
-├── llama.py                    # Llama model integration
-├── testing.py                  # System testing framework
-├── items.py                    # Data model definitions
-├── memory.json                 # Agent memory persistence
-├── random_forest_model.pkl     # ML model integration
-├── agents/                     # Agent implementations
-└── products_vectorstore/       # Product knowledge base
+08_Agent_Systems_and_Enterprise_Deployment/
+├── README.md                           # This file
+├── 01_Modal_Serverless_Setup.ipynb     # Modal introduction and setup
+├── 02_Basic_Agent_Implementation.ipynb # Basic agent implementation
+├── 03_Agent_Variations.ipynb           # Agent variations
+├── 04_Advanced_Agent_Features.ipynb    # Advanced agent features
+├── 05_MultiAgent_Coordination.ipynb    # Multi-agent coordination
+├── 06_Production_Optimization.ipynb    # Production optimizations
+├── 07_Monitoring_Analytics.ipynb       # Monitoring and analytics
+├── 08_Agent_System_Integration.ipynb   # Agent system integration
+├── 09_Enterprise_Deployment.ipynb      # Advanced deployment
+├── 10_Production_Monitoring.ipynb      # Production monitoring
+├── hello.py                           # Basic Modal examples
+├── deal_agent_framework.py            # Agent orchestration framework
+├── price_is_right.py                  # Game show pricing agent
+├── price_is_right_final.py            # Production pricing system
+├── pricer_ephemeral.py                # Ephemeral pricing service
+├── pricer_service.py                  # Main pricing service
+├── pricer_service2.py                 # Enhanced pricing service
+├── keep_warm.py                       # Service warm-up utilities
+├── log_utils.py                       # Logging and monitoring
+├── llama.py                           # Llama model integration
+├── testing.py                         # System testing framework
+├── items.py                           # Data model definitions
+├── memory.json                        # Agent memory persistence
+├── random_forest_model.pkl            # ML model integration
+├── agents/                            # Agent implementations
+├── products_vectorstore/              # Product knowledge base
+├── community_contributions/           # Student contributions
+└── __pycache__/                       # Python cache directory
 ```
 
 ## Skills Demonstrated

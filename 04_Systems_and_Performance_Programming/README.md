@@ -93,16 +93,16 @@ Advanced optimization techniques combining Python with C++ for maximum performan
 ## Project Structure
 
 ```
-week4/
-├── README.md                    # This file
-├── day3.ipynb                   # Performance optimization notebook
-├── day4.ipynb                   # Advanced C++ integration
-├── simple.cpp                   # Basic C++ implementation
-├── optimized.cpp                # Optimized C++ version
-├── optimized/                   # Optimized implementations directory
-├── CMakeLists.txt              # Build configuration
-├── benchmark.py                # Performance benchmarking
-└── OpenRouter.py               # Alternative API integration
+04_Systems_and_Performance_Programming/
+├── README.md                           # This file
+├── 01_Performance_Optimization_CPP.ipynb # Performance optimization notebook
+├── 02_Advanced_Systems_Programming.ipynb # Advanced C++ integration
+├── simple.cpp                          # Basic C++ implementation
+├── optimized.cpp                       # Optimized C++ version
+├── optimized/                          # Optimized implementations directory
+├── OpenRouter.py                       # Alternative API integration
+├── community-contributions/            # Student contributions
+└── __pycache__/                        # Python cache directory
 ```
 
 ## Skills Demonstrated

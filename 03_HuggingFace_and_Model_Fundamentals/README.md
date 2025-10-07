@@ -67,18 +67,19 @@ Access the interactive Colab notebooks:
 ## Project Structure
 
 ```
-week3/
+03_HuggingFace_and_Model_Fundamentals/
 ├── README.md                           # This file
-├── day1.ipynb                          # Colab introduction
-├── day2.ipynb                          # HuggingFace pipelines
-├── day3.ipynb                          # Tokenizers
-├── day4.ipynb                          # Models and architectures
-├── day5.ipynb                          # Meeting minutes application
-├── Copy of Week 3 Day 3 - tokenizers.ipynb
-├── Copy of Week 3 Day 4 - models.ipynb
-├── Copy of Week 3 Day 5 - Meeting Minutes product.ipynb
-├── week 3 day 2 - pipelines.ipynb
+├── 01_Google_Colab_GPU_Setup.ipynb     # Colab introduction
+├── 02_HuggingFace_Pipelines.ipynb      # HuggingFace pipelines
+├── 03_Advanced_Pipeline_Implementation.ipynb # Advanced pipelines
+├── 04_Tokenizers_Deep_Dive.ipynb       # Tokenizers
+├── 05_Custom_Tokenization_Techniques.ipynb # Custom tokenization
+├── 06_Transformer_Models.ipynb         # Models and architectures
+├── 07_Model_Architecture_Analysis.ipynb # Model analysis
+├── 08_Meeting_Minutes_Generator.ipynb   # Meeting minutes application
+├── 09_Production_Meeting_Assistant.ipynb # Production application
 ├── chatapp/                            # Bonus chat application
+├── community-contributions/            # Student contributions
 └── denver_extract.mp3                  # Sample audio file
 ```
 

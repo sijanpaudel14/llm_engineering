@@ -66,11 +66,11 @@ Developed a unified interface for integrating and comparing multiple frontier LL
 
 1. **Start Jupyter Lab**: `jupyter lab`
 2. **Open main notebooks**:
-   - `day1.ipynb` - Multi-provider setup and basic integration
-   - `day2.ipynb` - Advanced model comparison and evaluation
-   - `day3.ipynb` - Cost optimization and performance testing
-   - `day4.ipynb` - Error handling and fallback strategies
-   - `day5.ipynb` - Real-world application scenarios
+   - `02_MultiProvider_API_Setup.ipynb` – Multi-provider setup and basic integration
+   - `02_OpenAI_Anthropic_Google.ipynb` – Advanced model comparison and evaluation
+   - `02_Model_Comparison_Analysis.ipynb` – Cost optimization and performance testing
+   - `02_Error_Handling_Strategies.ipynb` – Error handling and fallback strategies
+   - `02_Production_API_Gateway.ipynb` – Real-world application scenarios
 
 ### Cost Management
 
@@ -81,15 +81,16 @@ Developed a unified interface for integrating and comparing multiple frontier LL
 ## Project Structure
 
 ```
-week2/
-├── README.md                    # This file
-├── day1.ipynb                   # Multi-provider setup
-├── day2.ipynb                   # Advanced integration
-├── day3.ipynb                   # Performance comparison
-├── day4.ipynb                   # Error handling
-├── day5.ipynb                   # Real-world applications
-├── week2 EXERCISE.ipynb         # Hands-on challenges
-└── chat-app/                    # Bonus: Multi-provider chat application
+02_API_Integration_and_Provider_Comparisons/
+├── README.md                           # This file
+├── 01_MultiProvider_API_Setup.ipynb    # Multi-provider setup
+├── 02_OpenAI_Anthropic_Google.ipynb    # Advanced integration
+├── 03_Model_Comparison_Analysis.ipynb  # Performance comparison
+├── 04_Error_Handling_Strategies.ipynb  # Error handling
+├── 05_Production_API_Gateway.ipynb     # Real-world applications
+├── API_Integration_Challenges.ipynb    # Hands-on challenges
+├── chat-app/                           # Bonus: Multi-provider chat application
+└── community-contributions/            # Student contributions
 ```
 
 ## Skills Demonstrated

@@ -71,19 +71,19 @@ python resume_finetune.py  # Resume training script
 ## Project Structure
 
 ```
-week7/
-├── README.md                                    # This file
-├── day1.ipynb                                   # QLoRA introduction
-├── day2.ipynb                                   # Base model evaluation
-├── day5.ipynb                                   # Fine-tuned model testing
-├── day3 and 4.ipynb                            # Training implementation
-├── Copy of Week 7 Day 1 qlora intro.ipynb     # QLoRA fundamentals
-├── Copy of Week 7 Day 2 base model evaluation.ipynb
-├── Copy of Week 7 Day 3_ TRAINING.ipynb       # Training execution
-├── Copy of Week 7 Day 5 - Testing our Fine-tuned model.ipynb
-├── resume_finetune.py                          # Training resume script
-├── complete_code.py                            # Complete implementation
-└── community_contributions/                     # Student contributions
+07_QLoRA_and_Model_FineTuning/
+├── README.md                               # This file
+├── 01_QLoRA_Introduction.ipynb             # QLoRA introduction
+├── 02_QLoRA_Fundamentals.ipynb            # QLoRA fundamentals
+├── 03_Base_Model_Evaluation.ipynb         # Base model evaluation
+├── 04_PreTraining_Performance_Analysis.ipynb # Pre-training analysis
+├── 05_QLoRA_Training_Implementation.ipynb # Training implementation
+├── 06_Advanced_Training_Pipeline.ipynb    # Training execution
+├── 07_FineTuned_Model_Testing.ipynb       # Fine-tuned model testing
+├── 08_Production_Model_Validation.ipynb   # Production validation
+├── resume_finetune.py                     # Training resume script
+├── complete_code.py                       # Complete implementation
+└── community_contributions/               # Student contributions
 ```
 
 ## Skills Demonstrated

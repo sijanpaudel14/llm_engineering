@@ -101,22 +101,25 @@ MODEL = "llama3.2"
 ## Project Structure
 
 ```
-week5/
-├── README.md                    # This file
-├── day1.ipynb                   # Main RAG implementation
-├── day2.ipynb                   # Advanced retrieval techniques
-├── day3.ipynb                   # Vector database optimization
-├── day4.5.ipynb                # Enhanced features
-├── day4.ipynb                   # Production improvements
-├── day5.ipynb                   # Complete system integration
-├── VectorstoreManager.py        # Vector database management
-├── knowledge-base/              # Company knowledge repository
-│   ├── employees/               # Employee profiles
-│   └── products/                # Product documentation
-├── vector_db/                   # Chroma vector database
-├── vector_db1/                  # Alternative database configurations
-├── vector_db2/
-└── vector_db_merged/            # Consolidated knowledge base
+05_RAG_Systems_and_Vector_Databases/
+├── README.md                           # This file
+├── 01_RAG_Knowledge_Assistant.ipynb    # Main RAG implementation
+├── 02_Vector_Database_Implementation.ipynb # Advanced retrieval techniques
+├── 03_Advanced_Retrieval_Techniques.ipynb # Vector database optimization
+├── 04_Production_RAG_System.ipynb      # Production improvements
+├── 05_RAG_Performance_Optimization.ipynb # Enhanced features
+├── 06_Enterprise_Knowledge_Platform.ipynb # Complete system integration
+├── VectorstoreManager.py               # Vector database management
+├── knowledge-base/                     # Company knowledge repository
+│   ├── employees/                      # Employee profiles
+│   └── products/                       # Product documentation
+├── vector_db/                          # Chroma vector database
+├── vector_db1/                         # Alternative database configurations
+├── vector_db2/                         # Database variants
+├── vector_db_0/                        # Database instances
+├── vector_db_1/                        # Database instances
+├── vector_db_merged/                   # Consolidated knowledge base
+└── community-contributions/            # Student contributions
 ```
 
 ## Skills Demonstrated

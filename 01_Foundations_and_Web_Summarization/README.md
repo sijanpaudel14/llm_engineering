@@ -84,15 +84,25 @@ For free local development without API costs:
 ## Project Structure
 
 ```
-week1/
-├── README.md                    # This file
-├── day1.ipynb                   # Main web summarizer project
-├── day2 EXERCISE.ipynb          # Additional exercises and challenges
-├── day5.ipynb                   # Extended functionality
-├── Guide to Jupyter.ipynb      # Jupyter tutorial for beginners
-├── Intermediate Python.ipynb   # Python skills refresher
-├── troubleshooting.ipynb       # Common issues and solutions
-└── solutions/                  # Reference implementations
+
+```
+
+01_Foundations_and_Web_Summarization/
+├── README.md # This file
+├── 01_WebSummarizer_FirstLLM.ipynb # Main web summarizer project
+├── 02_API_Integration_Exercises.ipynb # Additional exercises and challenges
+├── 05_Advanced_Web_Processing.ipynb # Extended functionality
+├── Jupyter_Development_Guide.ipynb # Jupyter tutorial for beginners
+├── Python_Skills_Refresher.ipynb # Python skills refresher
+├── Development_Troubleshooting.ipynb # Common issues and solutions
+├── Foundation_Challenges.ipynb # Week 1 exercises
+├── Untitled.ipynb # Practice notebook
+├── solutions/ # Reference implementations
+├── community-contributions/ # Student contributions
+└── diagnostics.py # Diagnostic utilities
+
+```
+
 ```
 
 ## Skills Demonstrated
