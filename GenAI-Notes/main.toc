@@ -1,0 +1,122 @@
+\contentsline {section}{Handling Imports from Parent Folders in Python and Jupyter}{5}{section*.2}%
+\contentsline {subsection}{Using \_\_file\_\_ in Python Scripts}{5}{section*.3}%
+\contentsline {subsection}{Using os.getcwd() in Jupyter Notebooks}{5}{section*.4}%
+\contentsline {subsection}{Using Absolute Paths}{6}{section*.5}%
+\contentsline {subsection}{Recommended Long-Term Approach}{6}{section*.6}%
+\contentsline {section}{Comparing LLMs -- The Basics (1)}{7}{section*.7}%
+\contentsline {section}{Comparing LLMs -- The Basics (2)}{7}{section*.8}%
+\contentsline {section}{Chinchilla Scaling Law}{8}{section*.9}%
+\contentsline {section}{Common LLM Benchmarks}{8}{section*.10}%
+\contentsline {section}{Specific Benchmarks}{9}{section*.11}%
+\contentsline {section}{Limitations of Benchmarks}{9}{section*.12}%
+\contentsline {section}{Advanced Benchmarks for Large Language Models}{10}{section*.13}%
+\contentsline {section}{Leaderboard Image}{12}{section*.14}%
+\contentsline {section}{A 5-Step Strategy for Using AI Models}{13}{section*.15}%
+\contentsline {subsection}{Step 1: Understand (Figure Out What You Need)}{14}{section*.16}%
+\contentsline {subsection}{Step 2: Prepare (Do Your Homework)}{15}{section*.17}%
+\contentsline {subsection}{Step 3: Select (Pick Your Tools and Test Them)}{16}{section*.18}%
+\contentsline {subsection}{Step 4: Customize (Make the AI Better at Your Task)}{17}{section*.19}%
+\contentsline {subsubsection}{Three Key Techniques}{17}{section*.20}%
+\contentsline {subsubsection}{Comparing the Three Techniques}{18}{section*.21}%
+\contentsline {subsection}{Step 5: Productionize (Get It Ready for the Real World)}{21}{section*.22}%
+\contentsline {section}{LoRA (Low-Rank Adaptation)}{23}{section*.23}%
+\contentsline {subsection}{1. Introduction}{23}{section*.24}%
+\contentsline {subsection}{2. How LoRA Works (Detailed)}{23}{section*.25}%
+\contentsline {subsection}{3. Step-by-Step Intuition}{23}{section*.26}%
+\contentsline {subsection}{4. Simple Analogy}{24}{section*.27}%
+\contentsline {subsection}{5. Why LoRA is Effective}{24}{section*.28}%
+\contentsline {subsection}{6. Benefits vs Limitations}{24}{section*.29}%
+\contentsline {subsection}{7. Summary in Simple Words}{24}{section*.30}%
+\contentsline {subsection}{8. Visualization Idea}{25}{section*.31}%
+\contentsline {section}{LoRA Hyperparameters: $r$, $\alpha $, and Target Modules}{26}{section*.32}%
+\contentsline {subsection}{1. Rank $r$ (Low-Rank Dimension)}{26}{section*.33}%
+\contentsline {subsection}{2. Scaling Factor $\alpha $}{26}{section*.34}%
+\contentsline {subsection}{3. Target Modules}{26}{section*.35}%
+\contentsline {subsection}{Summary Table}{27}{section*.36}%
+\contentsline {section}{Q, K, V, O in Transformers}{28}{section*.37}%
+\contentsline {subsection}{Analogy: Classroom Example}{28}{section*.38}%
+\contentsline {section}{LoRA in PeftModelForCausalLM}{29}{section*.39}%
+\contentsline {subsection}{Model Architecture Overview}{29}{section*.40}%
+\contentsline {subsection}{LoRA in Attention Layers}{29}{section*.41}%
+\contentsline {subsubsection}{Why LoRA is Effective in Attention}{30}{section*.42}%
+\contentsline {subsection}{Dimensions of Q, K, V, O Projections}{30}{section*.43}%
+\contentsline {subsection}{Summary}{30}{section*.44}%
+\contentsline {subsubsection}{Key Points}{30}{section*.45}%
+\contentsline {section}{Loading a Base Model in 4-Bit and Using LoRA}{31}{section*.46}%
+\contentsline {subsection}{Explanation of the Code}{31}{section*.47}%
+\contentsline {subsection}{How LoRA Optimizes This}{31}{section*.48}%
+\contentsline {subsection}{Summary}{32}{section*.49}%
+\contentsline {section}{Decision: Selecting a Base Model}{33}{section*.50}%
+\contentsline {subsection}{Goal}{33}{section*.51}%
+\contentsline {subsection}{Decision criteria (short checklist)}{33}{section*.52}%
+\contentsline {subsection}{Model-by-model short summary}{33}{section*.53}%
+\contentsline {subsection}{Comparison table (high-level)}{34}{section*.54}%
+\contentsline {subsection}{Base vs Instruct variants}{34}{section*.55}%
+\contentsline {subsection}{Rules of thumb and recommended workflows}{35}{section*.56}%
+\contentsline {subsection}{Practical checklist before committing}{35}{section*.57}%
+\contentsline {subsection}{Short recommendation examples}{35}{section*.58}%
+\contentsline {subsection}{Why LLaMA 3.1 was chosen: Tokenization Convenience}{36}{section*.59}%
+\contentsline {subsubsection}{Summary}{36}{section*.60}%
+\contentsline {section}{Key Hyperparameters in QLoRA}{37}{section*.61}%
+\contentsline {subsection}{Quick Summary Table}{38}{section*.62}%
+\contentsline {section}{Training Hyperparameters}{39}{section*.63}%
+\contentsline {subsection}{1. Epochs}{39}{section*.64}%
+\contentsline {subsection}{2. Batch Size}{39}{section*.65}%
+\contentsline {subsection}{3. Learning Rate}{40}{section*.66}%
+\contentsline {subsection}{4. Gradient Accumulation}{40}{section*.67}%
+\contentsline {subsection}{5. Optimizer}{41}{section*.68}%
+\contentsline {section}{DataCollatorForCompletionOnlyLM in HuggingFace TRL}{42}{section*.69}%
+\contentsline {subsection}{Problem}{42}{section*.70}%
+\contentsline {subsection}{Traditional Approach (Complicated)}{42}{section*.71}%
+\contentsline {subsection}{HuggingFace TRL Solution: DataCollatorForCompletionOnlyLM}{42}{section*.72}%
+\contentsline {subsection}{Example}{42}{section*.73}%
+\contentsline {subsection}{Why it is important}{43}{section*.74}%
+\contentsline {section}{Checkpointing and Resuming Training in HuggingFace / Colab}{44}{section*.76}%
+\contentsline {subsection}{Overview}{44}{section*.77}%
+\contentsline {subsection}{Checkpoint Components}{44}{section*.78}%
+\contentsline {subsection}{Manual Checkpointing in PyTorch}{45}{section*.79}%
+\contentsline {subsection}{Automatic Checkpointing with HuggingFace Trainer / SFTTrainer}{45}{section*.80}%
+\contentsline {subsection}{Checkpointing Flow Step-by-Step}{46}{section*.81}%
+\contentsline {subsection}{Checkpointing in Google Colab}{46}{section*.82}%
+\contentsline {subsection}{Advantages of Using SFTTrainer Checkpointing}{46}{section*.83}%
+\contentsline {subsection}{Checkpointing in Kaggle}{48}{section*.84}%
+\contentsline {subsubsection}{1. Manual Checkpointing}{48}{section*.85}%
+\contentsline {subsubsection}{Downloading Checkpoints}{48}{section*.86}%
+\contentsline {subsubsection}{Resuming Training on Kaggle (Manual)}{48}{section*.87}%
+\contentsline {subsubsection}{2. Automatic Checkpointing with SFTTrainer}{49}{section*.88}%
+\contentsline {subsubsection}{Summary for Kaggle}{49}{section*.89}%
+\contentsline {section}{Saving and Downloading Automatic Checkpoints in Kaggle}{50}{section*.90}%
+\contentsline {subsection}{When to Enter the Zip Command}{50}{section*.91}%
+\contentsline {subsection}{How to Download the Zip File}{50}{section*.92}%
+\contentsline {subsection}{Restoring Checkpoints from Zip}{50}{section*.93}%
+\contentsline {subsection}{Manual Upload to Hugging Face Hub}{52}{section*.95}%
+\contentsline {subsection}{Manual Download from Hugging Face Hub}{52}{section*.96}%
+\contentsline {subsection}{Why Use Hugging Face Hub?}{52}{section*.97}%
+\contentsline {section}{Automatic Checkpointing to Hugging Face Hub}{54}{section*.98}%
+\contentsline {subsection}{Authenticate with Hugging Face}{54}{section*.99}%
+\contentsline {subsection}{Define Model and Optimizer}{55}{section*.100}%
+\contentsline {subsection}{Training Loop with Automatic HF Checkpointing}{56}{section*.101}%
+\contentsline {subsection}{Resuming Training from HF Hub}{57}{section*.102}%
+\contentsline {subsection}{Key Points / Best Practices}{57}{section*.103}%
+\contentsline {section}{Resuming Fine-Tuning with SFTTrainer and LoRA}{58}{section*.104}%
+\contentsline {subsection}{Checkpointing in SFTTrainer with LoRA}{62}{section*.115}%
+\contentsline {section}{Inferencing using SFT}{63}{section*.116}%
+\contentsline {section}{Improved Prediction Function}{65}{section*.117}%
+\contentsline {section}{Four Steps in LoRA Training}{67}{section*.120}%
+\contentsline {subsection}{1. Forward Pass with LoRA}{67}{section*.121}%
+\contentsline {subsection}{2. Loss Calculation}{67}{section*.122}%
+\contentsline {subsection}{3. Backward Pass (Backpropagation with LoRA)}{67}{section*.123}%
+\contentsline {subsection}{4. Optimization (Updating LoRA Parameters)}{68}{section*.124}%
+\contentsline {subsection}{Summary Table of LoRA Training Steps}{68}{section*.125}%
+\contentsline {subsection}{Uploading Final Dataset to Hugging Face Hub}{69}{section*.126}%
+\contentsline {section}{Multi-Agent AI Architecture for Automated Deal Finding Systems}{70}{section*.127}%
+\contentsline {subsection}{User Interface (UI)}{70}{section*.128}%
+\contentsline {subsection}{Agent Framework}{70}{section*.129}%
+\contentsline {subsection}{Planning Agent}{70}{section*.130}%
+\contentsline {subsection}{Scanner Agent}{70}{section*.131}%
+\contentsline {subsection}{Ensemble Agent}{70}{section*.132}%
+\contentsline {subsection}{Messaging Agent}{71}{section*.133}%
+\contentsline {subsection}{Pipeline Summary}{71}{section*.134}%
+\contentsline {subsection}{Future Work}{71}{section*.135}%
+\contentsline {section}{Create a RAG Database with Our 400,000 Training Data}{72}{section*.136}%
+\contentsline {section}{Hallmarks of an Agentic AI Solution}{75}{section*.137}%

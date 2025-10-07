@@ -13,7 +13,6 @@ import os
 from key_utils import get_next_key
 
 import langchain_google_genai.chat_models as chat_mod
-
 class LLMHandler:
     # --- Model Constants ---
     # Using modern, flexible models that support conversation history is recommended
@@ -153,7 +152,7 @@ class LLMHandler:
         return full_response_content
 
     # --- THE UNIFIED RUN METHOD ---
-    def run(self, user_input, task_type="text", tools=None, max_retries=11, enable_retry=False,width=400,height=None, stream=False, display_text=True):
+    def run(self, user_input, task_type="text", tools=None, max_retries=11, enable_retry=False,width=400,height=None, stream=False, display_text=True,max_tokens = None):
         """
         A single, unified method to handle text, audio, image, and tool generation.
         This method RETURNS data instead of displaying it.
@@ -196,9 +195,9 @@ class LLMHandler:
         for attempt in range(max_retries):
             api_key, user_name = get_next_key()
             print(f"➡️ Attempt {attempt + 1}/{max_retries} using key from '{user_name}'...")
-            
+            quota_errors = ["quota", "exceed", "overloaded", "exhausted", "limit"]
             try:
-                llm = ChatGoogleGenerativeAI(model=model_name, google_api_key=api_key)
+                llm = ChatGoogleGenerativeAI(model=model_name, google_api_key=api_key,max_tokens=max_tokens)
                 
                 # 4. Handle different task types
                 if task_type == "audio":
@@ -263,14 +262,19 @@ class LLMHandler:
                         
 
                 return {"type": "text", "data": response.content, "text": response.content}
-
-            except (ResourceExhausted, GoogleAPICallError, ValueError) as e:
+            except Exception as e:
                 print(f"⚠️ Attempt {attempt + 1} failed: {e.__class__.__name__} - {e}")
-                if attempt + 1 >= max_retries:
-                    raise RuntimeError("All API keys failed or quota exceeded.") from e
-                continue # Try the next key
-
+                error_msg = str(e).lower()
+                # check if any keyword from list is inside error message
+                if any(err in error_msg for err in quota_errors):
+                    print("⚠️ Quota/limit issue, trying next key...")
+                    continue   # try next key
+                else:
+                    raise   # if it's another kind of error, stop
+            
+            # If loop finishes with no success
         raise RuntimeError("All API keys failed or quota exceeded after all attempts.")
+
     #******************************************************************#
     # --- NEW: GENERATE AUDIO FROM TEXT METHOD ---
     #******************************************************************#

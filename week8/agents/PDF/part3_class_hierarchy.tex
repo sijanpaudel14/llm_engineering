@@ -1,0 +1,596 @@
+\chapter{Class Hierarchy and Inheritance}
+
+This chapter explores the object-oriented architecture of the multi-agent system, focusing on inheritance relationships, polymorphism, method resolution order (MRO), and the sophisticated use of Python's class system to create a flexible and extensible agent framework.
+
+\section{Overview of Class Hierarchy}
+
+The system's class hierarchy is designed around a single base class (Agent) with multiple specialized subclasses, demonstrating classical object-oriented inheritance patterns combined with composition for complex functionality.
+
+\subsection{Inheritance Tree Structure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    level distance=2.5cm,
+    level 1/.style={sibling distance=6cm},
+    level 2/.style={sibling distance=2cm},
+    every node/.style={
+        draw,
+        rectangle,
+        rounded corners,
+        minimum width=2.5cm,
+        minimum height=0.8cm,
+        text centered,
+        font=\footnotesize
+    },
+    root/.style={fill=yellow!30, font=\bfseries},
+    agent/.style={fill=blue!20},
+    model/.style={fill=green!20},
+    data/.style={fill=orange!20}
+]
+
+\node[root] (root) {Agent}
+    child {
+        node[agent] {PlanningAgent}
+    }
+    child {
+        node[agent] {ScannerAgent}
+    }
+    child {
+        node[agent] {EnsembleAgent}
+    }
+    child {
+        node[agent] {MessagingAgent}
+    }
+    child {
+        node[agent] {SpecialistAgent}
+    }
+    child {
+        node[agent] {FrontierAgent}
+    }
+    child {
+        node[agent] {RandomForestAgent}
+    };
+
+% Add non-inheriting classes
+\node[data, below=4cm of root] (scraped) {ScrapedDeal};
+\node[model, right=1cm of scraped] (deal) {Deal (BaseModel)};
+\node[model, right=1cm of deal] (selection) {DealSelection (BaseModel)};
+\node[model, right=1cm of selection] (opportunity) {Opportunity (BaseModel)};
+
+% Add labels for different types
+\node[above=0.3cm of root, font=\bfseries\footnotesize] {Base Classes};
+\node[above=0.3cm of scraped, font=\bfseries\footnotesize] {Data Classes};
+
+\end{tikzpicture}
+\caption{Complete Class Hierarchy of the Multi-Agent System}
+\label{fig:class_hierarchy}
+\end{figure}
+
+\section{Base Class Analysis: Agent}
+
+\subsection{Agent Class Architecture}
+
+The Agent class serves as an abstract base class implementing the Template Method pattern and providing common infrastructure for all specialized agents.
+
+\begin{lstlisting}[caption=Agent Base Class - Complete Analysis]
+class Agent:
+    """
+    An abstract superclass for Agents
+    Used to log messages in a way that can identify each Agent
+    """
+
+    # Class-level constants (shared across all instances)
+    RED = '\033[31m'
+    GREEN = '\033[32m'
+    YELLOW = '\033[33m'
+    BLUE = '\033[34m'
+    MAGENTA = '\033[35m'
+    CYAN = '\033[36m'
+    WHITE = '\033[37m'
+    BG_BLACK = '\033[40m'
+    RESET = '\033[0m'
+
+    # Instance attributes with type annotations
+    name: str = ""
+    color: str = '\033[37m'
+
+    def log(self, message):
+        """Template method for logging - inherited by all subclasses"""
+        color_code = self.BG_BLACK + self.color
+        message = f"[{self.name}] {message}"
+        logging.info(color_code + message + self.RESET)
+\end{lstlisting}
+
+\subsection{Class Attributes vs Instance Attributes}
+
+\paragraph{Class-Level Constants}
+The ANSI color codes are defined as class attributes, meaning:
+\begin{itemize}
+\item \textbf{Memory Efficiency}: Single copy shared across all instances
+\item \textbf{Namespace Access}: Available as Agent.RED, Agent.BLUE, etc.
+\item \textbf{Inheritance}: Automatically available in all subclasses
+\item \textbf{Immutability Convention}: Uppercase naming indicates constants
+\end{itemize}
+
+\paragraph{Instance Attributes}
+The name and color attributes are instance-specific:
+\begin{itemize}
+\item \textbf{Type Annotations}: Modern Python typing for IDE support
+\item \textbf{Default Values}: Sensible fallbacks if not overridden
+\item \textbf{Customization}: Each agent can have unique values
+\item \textbf{Late Binding}: Values determined at class definition time
+\end{itemize}
+
+\subsection{Method Resolution Order (MRO)}
+
+For the base Agent class:
+\begin{lstlisting}[caption=Agent MRO Analysis]
+>>> Agent.__mro__
+(<class '__main__.Agent'>, <class 'object'>)
+
+>>> Agent.mro()
+[<class '__main__.Agent'>, <class 'object'>]
+\end{lstlisting}
+
+\paragraph{MRO Implications}
+\begin{itemize}
+\item \textbf{Single Inheritance}: Direct inheritance from object
+\item \textbf{Method Lookup}: Python searches Agent first, then object
+\item \textbf{No Conflicts}: Simple linear resolution order
+\item \textbf{Built-in Integration}: Inherits all object methods (\_\_init\_\_, \_\_str\_\_, etc.)
+\end{itemize}
+
+\section{Concrete Agent Classes}
+
+\subsection{PlanningAgent Inheritance}
+
+\begin{lstlisting}[caption=PlanningAgent Class Definition]
+class PlanningAgent(Agent):
+    name = "Planning Agent"
+    color = Agent.GREEN
+    DEAL_THRESHOLD = 50
+
+    def __init__(self, collection):
+        """Overrides object.__init__ but uses Agent.log"""
+        self.log("Planning Agent is initializing")
+        self.scanner = ScannerAgent()
+        self.ensemble = EnsembleAgent(collection)
+        self.messenger = MessagingAgent()
+        self.log("Planning Agent is ready")
+\end{lstlisting}
+
+\paragraph{Inheritance Analysis}
+\begin{enumerate}
+\item \textbf{Class Attribute Override}: Redefines name and color from parent
+\item \textbf{Additional Constants}: Adds DEAL\_THRESHOLD specific to this class
+\item \textbf{Constructor Definition}: Implements custom \_\_init\_\_ method
+\item \textbf{Parent Method Usage}: Calls self.log() which resolves to Agent.log()
+\item \textbf{Composition Pattern}: Creates instances of other agents
+\end{enumerate}
+
+\paragraph{Method Resolution Process}
+When \texttt{self.log()} is called:
+\begin{enumerate}
+\item Python looks for log() in PlanningAgent class - not found
+\item Python looks for log() in Agent class - found!
+\item Agent.log() executes using PlanningAgent instance data
+\item self.name resolves to "Planning Agent" (overridden value)
+\item self.color resolves to Agent.GREEN (class constant reference)
+\end{enumerate}
+
+\subsection{EnsembleAgent Inheritance}
+
+\begin{lstlisting}[caption=EnsembleAgent Inheritance Pattern]
+class EnsembleAgent(Agent):
+    name = "Ensemble Agent"
+    color = Agent.YELLOW
+    
+    def __init__(self, collection):
+        # Demonstrates composition over inheritance
+        self.log("Initializing Ensemble Agent")  # Uses inherited method
+        self.specialist = SpecialistAgent()      # Composition
+        self.frontier = FrontierAgent(collection) # Composition
+        self.random_forest = RandomForestAgent() # Composition
+        self.model = joblib.load('ensemble_model.pkl')
+        self.log("Ensemble Agent is ready")
+
+    def price(self, description: str) -> float:
+        # New method specific to this class
+        # Coordinates other agents (delegation pattern)
+        pass
+\end{lstlisting}
+
+\paragraph{Design Pattern Analysis}
+\begin{itemize}
+\item \textbf{Inheritance}: Gets logging functionality from Agent
+\item \textbf{Composition}: Contains other agent instances
+\item \textbf{Delegation}: Forwards price() calls to composed agents
+\item \textbf{Coordination}: Acts as orchestrator for multiple ML models
+\end{itemize}
+
+\subsection{SpecialistAgent Inheritance}
+
+\begin{lstlisting}[caption=SpecialistAgent Remote Integration]
+class SpecialistAgent(Agent):
+    name = "Specialist Agent"
+    color = Agent.RED
+
+    def __init__(self):
+        self.log("Specialist Agent is initializing - connecting to modal")
+        Pricer = modal.Cls.from_name("pricer-service", "Pricer")
+        self.pricer = Pricer()
+        self.log("Specialist Agent is ready")
+        
+    def price(self, description: str) -> float:
+        self.log("Specialist Agent is calling remote fine-tuned model")
+        result = self.pricer.price.remote(description)
+        self.log(f"Specialist Agent completed - predicting ${result:.2f}")
+        return result
+\end{lstlisting}
+
+\paragraph{Remote Object Integration}
+\begin{itemize}
+\item \textbf{Distributed Computing}: Integrates with Modal's remote execution platform
+\item \textbf{Proxy Pattern}: self.pricer acts as proxy for remote object
+\item \textbf{Method Forwarding}: price() method forwards to remote implementation
+\item \textbf{Seamless Integration}: Remote complexity hidden behind simple interface
+\end{itemize}
+
+\section{Polymorphism in Action}
+
+\subsection{Price Estimation Polymorphism}
+
+All price-estimating agents implement a common interface despite different implementations:
+
+\begin{lstlisting}[caption=Polymorphic Price Methods]
+# Each agent implements price() differently
+specialist_agent.price(description)    # Remote ML model call
+frontier_agent.price(description)      # RAG + LLM
+random_forest_agent.price(description) # Traditional ML
+ensemble_agent.price(description)      # Combines all three
+\end{lstlisting}
+
+\paragraph{Polymorphism Benefits}
+\begin{itemize}
+\item \textbf{Interchangeability}: Agents can be swapped without code changes
+\item \textbf{Extensibility}: New price estimation strategies easily added
+\item \textbf{Abstraction}: Client code doesn't need to know implementation details
+\item \textbf{Testing}: Mock objects can easily replace real agents
+\end{itemize}
+
+\subsection{Runtime Polymorphism Example}
+
+\begin{lstlisting}[caption=Dynamic Agent Selection]
+def get_price_estimate(agent_type: str, description: str) -> float:
+    """Demonstrates runtime polymorphism"""
+    agents = {
+        'specialist': SpecialistAgent(),
+        'frontier': FrontierAgent(collection),
+        'random_forest': RandomForestAgent(),
+    }
+    
+    agent = agents[agent_type]  # Runtime selection
+    return agent.price(description)  # Polymorphic call
+\end{lstlisting}
+
+\section{Advanced Inheritance Concepts}
+
+\subsection{Method Override Analysis}
+
+\subsubsection{Scanner Agent Variations}
+
+The system includes two scanner implementations demonstrating interface consistency:
+
+\begin{lstlisting}[caption=Scanner Agent Polymorphism]
+class ScannerAgent(Agent):
+    """OpenAI-based implementation"""
+    name = "Scanner Agent"
+    color = Agent.CYAN
+    
+    def scan(self, memory: List[str]=[]) -> Optional[DealSelection]:
+        # OpenAI structured output implementation
+        pass
+
+class ScannerAgentLangChain(Agent):
+    """LangChain/Gemini-based implementation"""
+    name = "Scanner Agent"  # Same name!
+    color = Agent.CYAN     # Same color!
+    
+    def scan(self, memory: List[str]=[]) -> Optional[DealSelection]:
+        # LangChain implementation with Gemini
+        pass
+\end{lstlisting}
+
+\paragraph{Interface Consistency}
+\begin{itemize}
+\item \textbf{Same Method Signature}: Both implement scan() with identical parameters
+\item \textbf{Same Return Type}: Both return Optional[DealSelection]
+\item \textbf{Same Visual Identity}: Both use same name and color
+\item \textbf{Substitutability}: Can be swapped without affecting client code
+\end{itemize}
+
+\subsection{Abstract Methods and Duck Typing}
+
+Although Python doesn't enforce abstract methods without ABC module, the system uses informal protocols:
+
+\begin{lstlisting}[caption=Informal Protocol Definition]
+# Informal "PriceEstimator" protocol
+class PriceEstimatorProtocol:
+    """Not actually defined, but implied by usage"""
+    def price(self, description: str) -> float:
+        """All price-estimating agents must implement this"""
+        raise NotImplementedError
+\end{lstlisting}
+
+\paragraph{Duck Typing in Practice}
+\begin{itemize}
+\item \textbf{Protocol Compliance}: If it has a price() method, it's a price estimator
+\item \textbf{Runtime Checking}: Errors only occur when methods are called
+\item \textbf{Flexibility}: No rigid interface requirements
+\item \textbf{Python Philosophy}: "If it walks like a duck and quacks like a duck..."
+\end{itemize}
+
+\section{Composition vs Inheritance}
+
+\subsection{EnsembleAgent Composition Analysis}
+
+The EnsembleAgent demonstrates composition over inheritance:
+
+\begin{lstlisting}[caption=Composition Pattern Analysis]
+class EnsembleAgent(Agent):  # Inherits from Agent
+    def __init__(self, collection):
+        # Composition: "has-a" relationships
+        self.specialist = SpecialistAgent()      # Has a specialist
+        self.frontier = FrontierAgent(collection) # Has a frontier agent  
+        self.random_forest = RandomForestAgent() # Has a random forest
+        self.model = joblib.load('ensemble_model.pkl') # Has a model
+        
+    def price(self, description: str) -> float:
+        # Delegates to composed objects
+        specialist = self.specialist.price(description)
+        frontier = self.frontier.price(description)
+        random_forest = self.random_forest.price(description)
+        # Combines results using own logic
+        return self.combine_predictions(specialist, frontier, random_forest)
+\end{lstlisting}
+
+\paragraph{Composition Benefits}
+\begin{itemize}
+\item \textbf{Flexibility}: Can change components at runtime
+\item \textbf{Multiple Behaviors}: Combines functionality from multiple sources
+\item \textbf{Loose Coupling}: Components don't need to know about each other
+\item \textbf{Single Responsibility}: Each component has one clear purpose
+\end{itemize}
+
+\subsection{When to Use Inheritance vs Composition}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{}p{3cm}p{5cm}p{5cm}@{}}
+\toprule
+\textbf{Scenario} & \textbf{Inheritance} & \textbf{Composition} \\
+\midrule
+Common behavior & Agent base class provides logging & EnsembleAgent uses multiple predictors \\
+"Is-a" relationship & SpecialistAgent IS-A Agent & EnsembleAgent HAS-A SpecialistAgent \\
+Code reuse & All agents inherit log() method & EnsembleAgent reuses price() methods \\
+Flexibility & Fixed at class definition & Can change components at runtime \\
+Coupling & Tight coupling to base class & Loose coupling between components \\
+\bottomrule
+\end{tabular}
+\caption{Inheritance vs Composition Decision Matrix}
+\label{tab:inheritance_composition}
+\end{table}
+
+\section{Method Resolution and Attribute Access}
+
+\subsection{Attribute Resolution Process}
+
+When accessing attributes like \texttt{self.name} in an agent:
+
+\begin{lstlisting}[caption=Attribute Resolution Example]
+class FrontierAgent(Agent):
+    name = "Frontier Agent"  # Class attribute
+    color = Agent.BLUE      # References parent class constant
+    
+    def __init__(self, collection):
+        self.collection = collection  # Instance attribute
+        self.log("Initializing")      # Method call
+\end{lstlisting}
+
+\paragraph{Resolution Order}
+\begin{enumerate}
+\item \textbf{Instance Dictionary}: Check obj.\_\_dict\_\_ first
+\item \textbf{Class Dictionary}: Check class.\_\_dict\_\_ 
+\item \textbf{Parent Classes}: Follow MRO up inheritance chain
+\item \textbf{Descriptors}: Handle special attributes like properties
+\item \textbf{\_\_getattr\_\_}: Last resort if defined
+\end{enumerate}
+
+\subsection{Dynamic Attribute Creation}
+
+Some agents create attributes dynamically:
+
+\begin{lstlisting}[caption=Dynamic Attribute Example]
+class FrontierAgent(Agent):
+    def __init__(self, collection):
+        # These become instance attributes
+        self.collection = collection
+        self.client = OpenAI()  # Runtime object creation
+        self.model = SentenceTransformer('...')  # Runtime initialization
+\end{lstlisting}
+
+\paragraph{Runtime Attribute Implications}
+\begin{itemize}
+\item \textbf{Memory Usage}: Each instance has its own copy
+\item \textbf{Type Safety}: Harder to detect errors statically
+\item \textbf{IDE Support}: Autocomplete may not work perfectly
+\item \textbf{Flexibility}: Can adapt behavior based on runtime conditions
+\end{itemize}
+
+\section{Special Methods and Magic Methods}
+
+\subsection{\_\_repr\_\_ Implementation}
+
+The ScrapedDeal class implements a custom string representation:
+
+\begin{lstlisting}[caption=Custom \_\_repr\_\_ Implementation]
+class ScrapedDeal:
+    def __repr__(self):
+        """Return a string to describe this deal"""
+        return f"<{self.title}>"
+        
+# Usage demonstrates polymorphic behavior
+deals = [ScrapedDeal(entry) for entry in entries]
+print(deals)  # Automatically calls __repr__ for each deal
+\end{lstlisting}
+
+\paragraph{Magic Method Benefits}
+\begin{itemize}
+\item \textbf{Python Integration}: Works seamlessly with built-in functions
+\item \textbf{Debugging Support}: Better error messages and logging output
+\item \textbf{Collection Display}: Lists and dicts show meaningful information
+\item \textbf{Developer Experience}: More informative interactive sessions
+\end{itemize}
+
+\subsection{Class Methods and Alternative Constructors}
+
+ScrapedDeal provides a class method for creation:
+
+\begin{lstlisting}[caption=Class Method as Alternative Constructor]
+class ScrapedDeal:
+    @classmethod
+    def fetch(cls, show_progress: bool = False) -> List[Self]:
+        """Alternative constructor that creates multiple instances"""
+        deals = []
+        for feed_url in feeds:
+            feed = feedparser.parse(feed_url)
+            for entry in feed.entries[:10]:
+                deals.append(cls(entry))  # cls refers to ScrapedDeal
+        return deals
+
+# Usage: Factory method pattern
+all_deals = ScrapedDeal.fetch(show_progress=True)
+\end{lstlisting}
+
+\paragraph{Class Method Advantages}
+\begin{itemize}
+\item \textbf{Named Constructors}: More descriptive than multiple \_\_init\_\_ methods
+\item \textbf{Type Safety}: Return type matches the class
+\item \textbf{Inheritance Support}: Works correctly with subclasses
+\item \textbf{Factory Pattern}: Encapsulates complex object creation logic
+\end{itemize}
+
+\section{Modern Python Features}
+
+\subsection{Type Annotations in Inheritance}
+
+The system uses modern Python type annotations extensively:
+
+\begin{lstlisting}[caption=Advanced Type Annotations]
+from typing import List, Dict, Self, Optional
+
+class ScrapedDeal:
+    @classmethod
+    def fetch(cls, show_progress: bool = False) -> List[Self]:
+        """Self refers to the current class, supporting inheritance"""
+        pass
+    
+class FrontierAgent(Agent):
+    def price(self, description: str) -> float:
+        """Clear input/output types for better IDE support"""
+        pass
+        
+    def find_similars(self, description: str) -> tuple[List[str], List[float]]:
+        """Modern Python 3.9+ tuple syntax"""
+        pass
+\end{lstlisting}
+
+\paragraph{Type Annotation Benefits}
+\begin{itemize}
+\item \textbf{IDE Support}: Better autocomplete and error detection
+\item \textbf{Documentation}: Types serve as inline documentation
+\item \textbf{Runtime Checking}: Can be used with tools like mypy
+\item \textbf{Refactoring}: Safer code changes with type awareness
+\end{itemize}
+
+\subsection{Dataclasses and Pydantic Integration}
+
+While not using Python's @dataclass decorator, the system uses Pydantic for similar benefits:
+
+\begin{lstlisting}[caption=Pydantic vs Traditional Classes]
+# Traditional class (ScrapedDeal)
+class ScrapedDeal:
+    def __init__(self, entry: Dict[str, str]):
+        self.title = entry['title']
+        self.summary = extract(entry['summary'])
+        # Manual attribute assignment
+
+# Pydantic model (Deal)  
+class Deal(BaseModel):
+    product_description: str
+    price: float
+    url: str
+    # Automatic validation, serialization, etc.
+\end{lstlisting}
+
+\paragraph{Pydantic Advantages}
+\begin{itemize}
+\item \textbf{Automatic Validation}: Type checking at runtime
+\item \textbf{JSON Serialization}: Built-in conversion to/from JSON
+\item \textbf{Schema Generation}: Automatic API documentation
+\item \textbf{IDE Integration}: Enhanced type checking and completion
+\end{itemize}
+
+\section{Inheritance Patterns and Design Principles}
+
+\subsection{Template Method Pattern}
+
+The Agent base class implements the Template Method pattern:
+
+\begin{lstlisting}[caption=Template Method Pattern]
+class Agent:
+    def log(self, message):
+        """Template method - same for all subclasses"""
+        color_code = self.BG_BLACK + self.color
+        message = f"[{self.name}] {message}"
+        logging.info(color_code + message + self.RESET)
+        
+# All subclasses use the same logging template
+class PlanningAgent(Agent):
+    def run(self):
+        self.log("Starting planning process")  # Uses template
+        # Custom logic here
+        self.log("Planning complete")  # Uses template
+\end{lstlisting}
+
+\subsection{Strategy Pattern Through Polymorphism}
+
+Different scanner implementations represent the Strategy pattern:
+
+\begin{lstlisting}[caption=Strategy Pattern Implementation]
+class PlanningAgent(Agent):
+    def __init__(self, collection, scanner_strategy="openai"):
+        if scanner_strategy == "openai":
+            self.scanner = ScannerAgent()
+        else:
+            self.scanner = ScannerAgentLangChain()
+        # Same interface, different implementation
+\end{lstlisting}
+
+\section{Chapter Summary}
+
+This chapter explored the sophisticated class hierarchy and inheritance patterns in the multi-agent system:
+
+\begin{itemize}
+\item \textbf{Single Inheritance}: All agents inherit from common Agent base class
+\item \textbf{Composition Over Inheritance}: Complex agents compose simpler agents
+\item \textbf{Polymorphism}: Common interfaces enable interchangeable components
+\item \textbf{Method Resolution}: Understanding how Python resolves method calls
+\item \textbf{Modern Features}: Type annotations, class methods, and Pydantic integration
+\item \textbf{Design Patterns}: Template Method, Strategy, and Factory patterns
+\end{itemize}
+
+The inheritance design provides a solid foundation for extensibility while maintaining clean separation of concerns. Each agent can focus on its specialized functionality while benefiting from common infrastructure provided by the base class.
+
+The next chapter will dive deeper into individual functions and methods, examining their implementation details, parameter handling, error management, and step-by-step execution processes.
