@@ -1,6 +1,6 @@
 # Github's default gitignore for Python
 *.bin
-community-contributions/
+community_contributions/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
